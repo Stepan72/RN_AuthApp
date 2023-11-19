@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const AuthContext = createContext({
   token: "",
@@ -7,11 +7,12 @@ export const AuthContext = createContext({
   logout: () => {},
 });
 
-export default AuthContextProvider = ({ children }) => {
+export default function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
 
   function authenticate(token) {
     setAuthToken(token);
+    console.log("Saved token", token);
   }
 
   function logout() {
@@ -26,4 +27,4 @@ export default AuthContextProvider = ({ children }) => {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+}
